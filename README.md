@@ -1,0 +1,1 @@
+This repository is for a fully functioning calculator using javascript, CSS and html.
