@@ -32,3 +32,10 @@ function operate () {
         return divide (inputA, inputB)
     };
 };
+
+/* get html-elements */
+const display = document.querySelector("#display");
+let buttons = document.querySelectorAll("button");
+buttons.forEach( button => button.addEventListener("click", function () {
+    alert(button.textContent);
+}));

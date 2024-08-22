@@ -19,7 +19,7 @@ body {
 button {
     width: 76px;
     height: 76px;
-    font-size: 40px;;
+    font-size: 40px;
 }
 
 #display {
@@ -30,4 +30,5 @@ button {
     border-color: black;
     border-width: 2px;
     margin-bottom: 2px;
-    font-size: 72px;
+    font: 72px 'Times New Roman';
+}
