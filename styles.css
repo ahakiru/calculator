@@ -1,0 +1,33 @@
+body {
+    display:flex;
+}
+
+#calculator {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 320px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 320px;
+}
+button {
+    width: 76px;
+    height: 76px;
+    font-size: 40px;;
+}
+
+#display {
+    display: flex;
+    width: 316px;
+    height: 76px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    margin-bottom: 2px;
+    font-size: 72px;
