@@ -44,7 +44,7 @@ let remove = document.querySelector("#remove");
 let clear = document.querySelector("#clear");
 
 numbers.forEach(button => button.addEventListener("click", function () {
-    if (display.textContent === "0") {
+    if (display.textContent === "0" || display.textContent == inputA) {
         display.textContent = button.textContent;
     } else {display.textContent += button.textContent;}
     if (operator === undefined) {
@@ -58,18 +58,18 @@ numbers.forEach(button => button.addEventListener("click", function () {
 operators.forEach(button => button.addEventListener("click", function () {
     if (operator === undefined) {
         operator = button.textContent;
-        display.textContent = "0";
     } else {
+        operator = button.textContent;
         display.textContent = operate (inputA, operator, inputB);
         inputA = display.textContent;
         operator = button.textContent;
-        display.textContent = "0";
     }
 
 }));
 
 execute.addEventListener("click", function () {
     display.textContent = operate (inputA, operator, inputB);
+    inputA = display.textContent;
 })
 
 clear.addEventListener("click", function() {
