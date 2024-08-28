@@ -18,9 +18,9 @@ function divide (a, b) {
 };
 
 /*math operator variables*/
-let inputA = 0;
+let inputA = "";
 let operator = undefined;
-let inputB = 0;
+let inputB = "";
 
 /* operator function*/
 function operate () {
@@ -42,14 +42,17 @@ let operators = document.querySelectorAll(".operator");
 let execute = document.querySelector("#execute");
 let remove = document.querySelector("#remove");
 let clear = document.querySelector("#clear");
+let input = "A";
 
 numbers.forEach(button => button.addEventListener("click", function () {
-    if (display.textContent === "0" || display.textContent == inputA) {
+    if (display.textContent === "") {
         display.textContent = button.textContent;
-    } else {display.textContent += button.textContent;}
-    if (operator === undefined) {
+        inputA = display.textContent;
+    } else if (input === "A") {
+        display.textContent = inputA + button.textContent;
         inputA = display.textContent;
     } else {
+        display.textContent = inputB + button.textContent;
         inputB = display.textContent;
     };
     }
@@ -58,11 +61,14 @@ numbers.forEach(button => button.addEventListener("click", function () {
 operators.forEach(button => button.addEventListener("click", function () {
     if (operator === undefined) {
         operator = button.textContent;
+        input = "B";
     } else {
         operator = button.textContent;
         display.textContent = operate (inputA, operator, inputB);
         inputA = display.textContent;
         operator = button.textContent;
+        input = "B";
+        inputB = "";
     }
 
 }));
@@ -70,11 +76,27 @@ operators.forEach(button => button.addEventListener("click", function () {
 execute.addEventListener("click", function () {
     display.textContent = operate (inputA, operator, inputB);
     inputA = display.textContent;
+    inputB ="";
 })
 
 clear.addEventListener("click", function() {
-    inputA = 0;
-    inputB = 0;
+    inputA = "";
+    inputB = "";
     operator = undefined;
-    display.textContent = "0";
+    display.textContent = "";
+    input = "A";
 })
+
+remove.addEventListener("click", function () {
+    if (display.textContent === "")
+    {} else {
+        if (input = "B") {
+            inputB = inputB.slice(0,-1);
+            display.textContent = inputB;
+        } else  {
+            inputA = inputA.slice(0,-1);
+            display.textContent = inputA;
+        }
+    }
+});
+
