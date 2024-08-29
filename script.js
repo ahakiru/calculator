@@ -122,3 +122,6 @@ remove.addEventListener("click", function () {
     }
 });
 
+/*keyboard support*/
+document.body.addEventListener("keydown", event => alert(event.key))
+
