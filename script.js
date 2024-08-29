@@ -42,7 +42,9 @@ let operators = document.querySelectorAll(".operator");
 let execute = document.querySelector("#execute");
 let remove = document.querySelector("#remove");
 let clear = document.querySelector("#clear");
+let decimal = document.querySelector("#dot");
 let input = "A";
+let decimalTyped = "False";
 
 numbers.forEach(button => button.addEventListener("click", function () {
     if (display.textContent === "") {
@@ -58,10 +60,21 @@ numbers.forEach(button => button.addEventListener("click", function () {
     }
 ));
 
+decimal.addEventListener("click", function () {
+    if (decimalTyped != "True") {
+        display.textContent += ".";
+        if (input === "A") {
+            inputA = display.textContent;
+        } else {inputB = display.textContent};
+        decimalTyped = "True";
+    } else if (input === "A" && inputA === "" || input === "B" && inputB === ""){}
+});
+
 operators.forEach(button => button.addEventListener("click", function () {
     if (operator === undefined) {
         operator = button.textContent;
         input = "B";
+        decimalTyped = "False";
     } else {
         operator = button.textContent;
         display.textContent = operate (inputA, operator, inputB);
@@ -69,14 +82,18 @@ operators.forEach(button => button.addEventListener("click", function () {
         operator = button.textContent;
         input = "B";
         inputB = "";
+        decimalTyped = "False";
     }
 
 }));
 
 execute.addEventListener("click", function () {
+    if (operator != undefined && inputB != "") {
     display.textContent = operate (inputA, operator, inputB);
     inputA = display.textContent;
     inputB ="";
+    decimalTyped = "False";
+    }
 })
 
 clear.addEventListener("click", function() {
@@ -85,6 +102,7 @@ clear.addEventListener("click", function() {
     operator = undefined;
     display.textContent = "";
     input = "A";
+    decimalTyped = "False";
 })
 
 remove.addEventListener("click", function () {
@@ -93,9 +111,13 @@ remove.addEventListener("click", function () {
         if (input === "B") {
             inputB = inputB.slice(0,-1);
             display.textContent = inputB;
+            if (inputB.includes(".")) {}
+            else {decimalTyped = "False"}
         } else  {
             inputA = inputA.slice(0,-1);
             display.textContent = inputA;
+            if (inputA.includes(".")) {}
+            else {decimalTyped = "False"}
         }
     }
 });
