@@ -90,7 +90,7 @@ clear.addEventListener("click", function() {
 remove.addEventListener("click", function () {
     if (display.textContent === "")
     {} else {
-        if (input = "B") {
+        if (input === "B") {
             inputB = inputB.slice(0,-1);
             display.textContent = inputB;
         } else  {
