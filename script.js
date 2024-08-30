@@ -46,19 +46,19 @@ let decimal = document.querySelector("#dot");
 let input = "A";
 let decimalTyped = "False";
 
-numbers.forEach(button => button.addEventListener("click", function () {
+function numberKey(number) {
     if (display.textContent === "") {
-        display.textContent = button.textContent;
+        display.textContent = number;
         inputA = display.textContent;
     } else if (input === "A") {
-        display.textContent = inputA + button.textContent;
+        display.textContent = inputA + number;
         inputA = display.textContent;
     } else {
-        display.textContent = inputB + button.textContent;
+        display.textContent = inputB + number;
         inputB = display.textContent;
     };
-    }
-));
+}
+
 
 decimal.addEventListener("click", function () {
     if (decimalTyped != "True") {
@@ -121,7 +121,9 @@ remove.addEventListener("click", function () {
         }
     }
 });
+numbers.forEach(button => button.addEventListener("click", event => numberKey(button.textContent)));
 
 /*keyboard support*/
-document.body.addEventListener("keydown", event => alert(event.key))
+
+document.body.addEventListener("keydown", event => console.log(event.key))
 
