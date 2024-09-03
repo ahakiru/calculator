@@ -59,51 +59,48 @@ function numberKey(number) {
     };
 }
 function decimalKey() {
-}    if (decimalTyped != "True") {
+    if (decimalTyped != "True") {
         display.textContent += ".";
         if (input === "A") {
             inputA = display.textContent;
         } else {inputB = display.textContent};
         decimalTyped = "True";
-    } else if (input === "A" && inputA === "" || input === "B" && inputB === ""){}
-
-
-operators.forEach(button => button.addEventListener("click", function () {
+    } else if (input === "A" && inputA === "" || input === "B" && inputB === ""){};
+};
+function operatorKey(operatorChosen) {
     if (operator === undefined) {
-        operator = button.textContent;
+        operator = operatorChosen;
         input = "B";
         decimalTyped = "False";
     } else {
-        operator = button.textContent;
+        operator = operatorChosen;
         display.textContent = operate (inputA, operator, inputB);
         inputA = display.textContent;
-        operator = button.textContent;
         input = "B";
         inputB = "";
         decimalTyped = "False";
     }
+};
 
-}));
-
-execute.addEventListener("click", function () {
+function executeKey() {
     if (operator != undefined && inputB != "") {
     display.textContent = operate (inputA, operator, inputB);
     inputA = display.textContent;
     inputB ="";
     decimalTyped = "False";
     }
-})
+};
 
-clear.addEventListener("click", function() {
+function clearKey() {
     inputA = "";
     inputB = "";
     operator = undefined;
     display.textContent = "";
     input = "A";
     decimalTyped = "False";
-})
+};
 
-remove.addEventListener("click", function () {
+function removeKey() {
     if (display.textContent === "")
     {} else {
         if (input === "B") {
@@ -118,18 +115,21 @@ remove.addEventListener("click", function () {
             else {decimalTyped = "False"}
         }
     }
-});
+};
+
 numbers.forEach(button => button.addEventListener("click", event => numberKey(button.textContent)));
 decimal.addEventListener("click", event => decimalKey());
-
-/*keyboard support*/
+operators.forEach(button => button.addEventListener("click", event => operatorKey(button.textContent)));
+execute.addEventListener("click", event => executeKey());
+clear.addEventListener("click", event => clearKey());
+remove.addEventListener("click", event => removeKey());
 
 document.body.addEventListener("keydown", function(event) {
     let key =  event.key
     if (!isNaN(key)) {numberKey(key)}
-    else if (key === "+" || key === "-" || key === "*" || key ==="/") {alert("key")}
-    else if (key === "Enter") {alert("enter")}
-    else if (key === "." || key === ",") {alert("decimal")}
-    else if (key === "Backspace") {alert ("backsp")}
+    else if (key === "+" || key === "-" || key === "*" || key ==="/") {operatorKey(key)}
+    else if (key === "Enter") {executeKey()}
+    else if (key === "." || key === ",") {decimalKey()}
+    else if (key === "Backspace") {removeKey()}
 });
 
