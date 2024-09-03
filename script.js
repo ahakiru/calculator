@@ -126,6 +126,11 @@ numbers.forEach(button => button.addEventListener("click", event => numberKey(bu
 /*keyboard support*/
 
 document.body.addEventListener("keydown", function(event) {
-    if (!isNaN(event.key)) {numberKey(event.key)}
-    else if (event.key === "+") {alert("plus")}});
+    let key =  event.key
+    if (!isNaN(key)) {numberKey(key)}
+    else if (key === "+" || key === "-" || key === "*" || key ==="/") {alert("key")}
+    else if (key === "Enter") {alert("enter")}
+    else if (key === "." || key === ",") {alert("decimal")}
+    else if (key === "Backspace") {alert ("backsp")}
+});
 
