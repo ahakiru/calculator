@@ -120,6 +120,7 @@ remove.addEventListener("click", function () {
     }
 });
 numbers.forEach(button => button.addEventListener("click", event => numberKey(button.textContent)));
+decimal.addEventListener("click", event => decimalKey());
 
 /*keyboard support*/
 
