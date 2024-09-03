@@ -58,17 +58,15 @@ function numberKey(number) {
         inputB = display.textContent;
     };
 }
-
-
-decimal.addEventListener("click", function () {
-    if (decimalTyped != "True") {
+function decimalKey() {
+}    if (decimalTyped != "True") {
         display.textContent += ".";
         if (input === "A") {
             inputA = display.textContent;
         } else {inputB = display.textContent};
         decimalTyped = "True";
     } else if (input === "A" && inputA === "" || input === "B" && inputB === ""){}
-});
+
 
 operators.forEach(button => button.addEventListener("click", function () {
     if (operator === undefined) {
