@@ -16,6 +16,7 @@ function divide (a, b) {
 
 /*doesnt work if decimal is result of execute!!!!*/
 function round () {
+    decimalPosition = display.textContent.indexOf(".");
     if (display.textContent.length > 9 && decimalTyped === "True") {
         let rounded = Math.round(display.textContent * (10**(8-decimalPosition)))/(10**(8-decimalPosition));
         if (input === "A") {
@@ -74,7 +75,6 @@ function numberKey(number) {
 function decimalKey() {
     if (decimalTyped != "True") {
         display.textContent += ".";
-        decimalPosition = display.textContent.length - 1;
         if (input === "A") {
             inputA = display.textContent;
         } else {inputB = display.textContent};
