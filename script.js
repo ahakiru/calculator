@@ -2,19 +2,30 @@
 function add (a, b) {
     return +a + +b;
 };
-
 function subtract (a, b) {
     return a - b;
 };
-
 function multiply (a, b) {
     return a * b;
 };
-
 function divide (a, b) {
     if (inputB === "0") {
         alert("DANGER!");
     } else {return a / b}
+};
+
+/*doesnt work if decimal is result of execute!!!!*/
+function round () {
+    if (display.textContent.length > 9 && decimalTyped === "True") {
+        let rounded = Math.round(display.textContent * (10**(8-decimalPosition)))/(10**(8-decimalPosition));
+        if (input === "A") {
+            inputA = rounded
+            display.textContent = inputA;
+        } else {
+            inputB = rounded;
+            display.textContent = inputB;
+        };
+    };
 };
 
 /*math operator variables*/
@@ -22,7 +33,7 @@ let inputA = "";
 let operator = undefined;
 let inputB = "";
 
-/* operator function*/
+/* operate function*/
 function operate () {
     if (operator === '+') {
         return add(inputA, inputB)
@@ -45,7 +56,9 @@ let clear = document.querySelector("#clear");
 let decimal = document.querySelector("#dot");
 let input = "A";
 let decimalTyped = "False";
+let decimalPosition;
 
+/* input functions*/
 function numberKey(number) {
     if (display.textContent === "") {
         display.textContent = number;
@@ -57,10 +70,11 @@ function numberKey(number) {
         display.textContent = inputB + number;
         inputB = display.textContent;
     };
-}
+};
 function decimalKey() {
     if (decimalTyped != "True") {
         display.textContent += ".";
+        decimalPosition = display.textContent.length - 1;
         if (input === "A") {
             inputA = display.textContent;
         } else {inputB = display.textContent};
@@ -75,22 +89,24 @@ function operatorKey(operatorChosen) {
     } else {
         operator = operatorChosen;
         display.textContent = operate (inputA, operator, inputB);
+        if (display.textContent.includes(".")) {decimalTyped = "True"};
+        round();
         inputA = display.textContent;
         input = "B";
         inputB = "";
         decimalTyped = "False";
     }
 };
-
 function executeKey() {
     if (operator != undefined && inputB != "") {
     display.textContent = operate (inputA, operator, inputB);
+    if (display.textContent.includes(".")) {decimalTyped = "True"};
+    round();
     inputA = display.textContent;
     inputB ="";
     decimalTyped = "False";
     }
 };
-
 function clearKey() {
     inputA = "";
     inputB = "";
@@ -99,7 +115,6 @@ function clearKey() {
     input = "A";
     decimalTyped = "False";
 };
-
 function removeKey() {
     if (display.textContent === "")
     {} else {
@@ -117,6 +132,7 @@ function removeKey() {
     }
 };
 
+/*event listeners*/
 numbers.forEach(button => button.addEventListener("click", event => numberKey(button.textContent)));
 decimal.addEventListener("click", event => decimalKey());
 operators.forEach(button => button.addEventListener("click", event => operatorKey(button.textContent)));
