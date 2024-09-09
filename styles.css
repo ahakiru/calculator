@@ -1,5 +1,19 @@
 body {
     display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0px;
+    background-color: darkslategray;
+}
+.header {
+    padding: 8px;
+    color: white;
+}
+.footer {
+    padding: 8px;
+    color:white;
 }
 
 #calculator {
@@ -8,27 +22,37 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     width: 320px;
+    background-color: lightgray;
+    padding: 4px;
 }
 
 .buttons {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    height: 320px;
 }
 button {
-    width: 76px;
-    height: 76px;
+    width: 77px;
+    height: 77px;
     font-size: 40px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 #display {
     display: flex;
     width: 316px;
-    height: 76px;
+    height: 77px;
     border-style: solid;
     border-color: black;
     border-width: 2px;
     margin-bottom: 2px;
     font: 72px 'Times New Roman';
+}
+#zero {
+    width: 158px;
+}
+
+#execute {
+    width: 158px;
 }

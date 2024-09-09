@@ -14,7 +14,6 @@ function divide (a, b) {
     } else {return a / b}
 };
 
-/*doesnt work if decimal is result of execute!!!!*/
 function round () {
     decimalPosition = display.textContent.indexOf(".");
     if (display.textContent.length > 9 && decimalTyped === "True") {
@@ -85,6 +84,9 @@ function operatorKey(operatorChosen) {
     if (operator === undefined) {
         operator = operatorChosen;
         input = "B";
+        decimalTyped = "False";
+    } else if (inputB === "") {
+        operator = operatorChosen;
         decimalTyped = "False";
     } else {
         operator = operatorChosen;
